@@ -1,29 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './App.scss'
 
-import Button from './components/Button'
+import { getTodoList } from '@/api/todo'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Button />
-      </header>
-    </div>
-  );
+import Button from '@/components/Button'
+
+class App extends Component {
+  componentDidMount () {
+    getTodoList().then(res => {
+      console.log(res)
+    })
+  }
+  render () {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+          <Button />
+        </header>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
