@@ -7,12 +7,23 @@ import { getTodoList } from '@/api/todo'
 import Button from '@/components/Button'
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      todoList: []
+    }
+  }
   componentDidMount () {
     getTodoList().then(res => {
       console.log(res)
+      this.setState({
+        todoList: res.data
+      })
     })
   }
   render () {
+    const { todoList } = this.state
+
     return (
       <div className="App">
         <header className="App-header">
@@ -29,6 +40,11 @@ class App extends Component {
             Learn React
           </a>
           <Button />
+          <ul>
+            {todoList.map(todo =>
+              <li key={todo.id}>{todo.title}</li>
+            )}
+          </ul>
         </header>
       </div>
     )
