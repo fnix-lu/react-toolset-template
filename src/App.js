@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
+// import logo from './logo.svg'
 import './App.scss'
 
 import { getTodoList } from '@/api/todo'
 
 import Button from '@/components/Button'
+import SvgIcon from '@/components/SvgIcon'
 
 class App extends Component {
   constructor (props) {
@@ -27,7 +28,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={require('./logo.svg')} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
@@ -40,6 +41,7 @@ class App extends Component {
             Learn React
           </a>
           <Button />
+          <SvgIcon iconClass="404" />
           <ul>
             {todoList.map(todo =>
               <li key={todo.id}>{todo.title}</li>
