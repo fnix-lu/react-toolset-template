@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './index.scss'
+import css from './index.scss'
 
 import { isExternal } from '@/utils/validate'
 
@@ -9,7 +9,7 @@ class SvgIcon extends Component {
 
     const external = isExternal(iconClass)
     const iconName = `#icon-${iconClass}`
-    const svgClass = className ? `svg-icon ${className}` : 'svg-icon'
+    const svgClass = className ? `${css['svg-icon']} ${className}` : css['svg-icon']
     const styleExternalIcon = {
       mask: `url(${iconClass}) no-repeat 50% 50%`,
       '-webkit-mask': `url(${iconClass}) no-repeat 50% 50%`
@@ -19,7 +19,7 @@ class SvgIcon extends Component {
      ? (
       <div
         style={styleExternalIcon}
-        className="svg-external-icon svg-icon"
+        className={`${css['svg-external-icon']} ${css['svg-icon']}`}
       />
      )
      : (
