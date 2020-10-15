@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 // import logo from './logo.svg'
 import css from './App.scss'
 
+import store from './store'
+import { setTodos } from './store/actions'
+
 import { getTodoList } from '@/api/todo'
 
 import Button from '@/components/Button'
@@ -15,11 +18,14 @@ class App extends Component {
     }
   }
   componentDidMount () {
-    getTodoList().then(res => {
-      console.log(res)
+    store.subscribe(() => {
       this.setState({
-        todoList: res.data
+        todoList: store.getState().todos
       })
+    })
+
+    getTodoList().then(res => {
+      store.dispatch(setTodos(res.data))
     })
   }
   render () {

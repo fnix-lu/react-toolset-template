@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import './icons'
+import './store'
 
 ReactDOM.render(
   <React.StrictMode>
