@@ -5,7 +5,9 @@ import types from '../action-types'
 export default function (state = [], action) {
   switch (action.type) {
     case types.SET_TODOS:
-      return action.todos
+      return action.payload
+    case types.REMOVE_TODO:
+      return state.filter(todo => todo.id !== action.payload.id)
     default:
       return state
   }

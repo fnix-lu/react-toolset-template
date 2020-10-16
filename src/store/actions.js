@@ -3,6 +3,13 @@ import types from './action-types'
 export function setTodos (todos) {
   return {
     type: types.SET_TODOS,
-    todos
+    payload: todos
+  }
+}
+
+export function removeTodo (todo) {
+  return {
+    type: types.REMOVE_TODO,
+    payload: todo
   }
 }
