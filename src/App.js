@@ -9,28 +9,7 @@ import { getTodoList } from '@/api/todo'
 
 import Button from '@/components/Button'
 import SvgIcon from '@/components/SvgIcon'
-
 import ReduxDemo from '@/components/ReduxDemo'
-import { connect } from 'react-redux'
-import { removeTodo } from '@/store/actions'
-
-const mapStateToProps = (state, ownProps) => {
-  console.log('ownProps', ownProps)
-  return {
-    todos: state.todos
-  }
-}
-
-const mapDispatchToProps = (dispatch) => ({
-  onRemoveTodo: (todo) => {
-    dispatch(removeTodo(todo))
-  }
-})
-
-const ReduxDemoConnected = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ReduxDemo)
 
 class App extends Component {
   constructor (props) {
@@ -40,11 +19,11 @@ class App extends Component {
     }
   }
   componentDidMount () {
-    /* store.subscribe(() => {
+    store.subscribe(() => {
       this.setState({
         todoList: store.getState().todos
       })
-    }) */
+    })
 
     getTodoList().then(res => {
       store.dispatch(setTodos(res.data))
@@ -75,7 +54,7 @@ class App extends Component {
               <li key={todo.id}>{todo.title}</li>
             )}
           </ul>
-          <ReduxDemoConnected name="Redux Demo" />
+          <ReduxDemo name="Redux Demo" />
         </header>
       </div>
     )
