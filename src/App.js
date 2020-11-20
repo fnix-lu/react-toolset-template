@@ -14,7 +14,8 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      todoList: []
+      todoList: [],
+      n: 0
     }
   }
   componentDidMount () {
@@ -27,6 +28,25 @@ class App extends Component {
     getTodoList().then(res => {
       store.dispatch(setTodos(res.data))
     })
+
+    // setState demo
+    setTimeout(() => {
+      this.setState(
+        { n: this.state.n + 1 },
+        () => console.log('回调b1', this.state.n) // 4th: 2
+      )
+      console.log('b', this.state.n) // 5th: 2
+    }, 0)
+
+    this.setState(
+      { n: this.state.n + 1 },
+      () => console.log('回调a1', this.state.n) // 2nd: 1
+    )
+    this.setState(
+      { n: this.state.n + 1 },
+      () => console.log('回调a2', this.state.n) // 3rd: 1
+    )
+    console.log('a', this.state.n) // 1st: 0
   }
   render () {
     const { todoList } = this.state
